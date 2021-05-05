@@ -1,11 +1,13 @@
 import React from "react";
 import "./App.css";
+import House from "./house";
 
 const HOUSES_ENDPOINT = "https://ancient-taiga-31359.herokuapp.com/api/houses";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {};
     this.addNewRoom = this.addNewRoom.bind(this);
     this.deleteRoom = this.deleteRoom.bind(this);
   }
@@ -49,12 +51,12 @@ export default class App extends React.Component {
     e.preventDefault();
   }
 
-  addRoom(e, house, room) {
+  addNewRoom(e, house, room) {
     house.rooms.push(room);
     updateHouse(house).then(() => {
       this.setState((state) => {
         for (let h of state.houses) {
-          if (h._id === house.id) {
+          if (h._id === house._id) {
             let h = house;
             break;
           }
